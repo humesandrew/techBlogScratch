@@ -1,7 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const session = require('express-session');
-const bcrypt = require('bcrypt');
+const sequelize = require('./config');
+const path = require('path');
+
+// const bcrypt = require('bcrypt');
 
 
 const app = express();
@@ -18,4 +21,11 @@ app.use(express.urlencoded({
 }));
 
 app.use(session(sessionSettings));
+app.use(express.static(path.join(__dirname, 'public')));
+
+sequelize.sync({
+	force: false
+}).then(() => {
+	app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+});
 
