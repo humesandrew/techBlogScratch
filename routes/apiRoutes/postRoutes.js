@@ -5,7 +5,7 @@
 const router = require('express').Router();
 const {
     Post
-} = require('../models/');
+} = require('../../models/');
 
 router.post('/', async (req, res) => {
     const body = req.body;

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const {
     User
-} = require('../models/');
+} = require('../../models/');
 
 
 router.post('/', async (req, res) => {
