@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const sequelize = require('./config');
 const path = require('path');
+const exphbs = require('express-handlebars');
 
 // const bcrypt = require('bcrypt');
 
@@ -17,11 +18,16 @@ const sessionSettings = {
 
 app.use(express.json());
 app.use(express.urlencoded({
-	extended: true
+	extended: false
 }));
+
+app.engine('handlebars', exphbs.engine);
+app.set('view engine', 'handlebars');
 
 app.use(session(sessionSettings));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('./routes'));
+
 
 sequelize.sync({
 	force: false
