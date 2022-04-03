@@ -26,6 +26,30 @@ router.get('/signUp', (req, res) => {
 });
 
 
+router.get('/', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return
+    }
+    res.render('signUp');
+});
+
+router.get('/', async (req, res) => {
+    try {
+      const postData = await Post.findAll({
+        include: [User],
+      });
+  
+      const posts = postData.map((post) => post.get({ plain: true }));
+  
+      res.render('homepage', {
+        posts
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 
 module.exports = router; 

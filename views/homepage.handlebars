@@ -1,0 +1,22 @@
+<div class="posts">
+    {{#each posts}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header flex-row justify-space-between">
+            <h2>
+                <a href="/post/{{id}}">{{title}}</a>
+            </h2>
+
+            <div>
+
+                Posted By: {{User.username}}
+
+            </div>
+            <div class="card-body">
+
+                {{body}}
+
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
