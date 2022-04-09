@@ -4,7 +4,7 @@ const session = require('express-session');
 const sequelize = require('./config/index.js');
 const path = require('path');
 const exphbs = require('express-handlebars');
-
+const helpers = require('./utils/helpers');
 // const bcrypt = require('bcrypt');
 
 
